@@ -1,13 +1,37 @@
 var express = require("express")
-
+const fs = require("fs");
 var path = require("path");
-const htmlRoute = require("/htmlRoute")
-
+// var htmlRoutes = require("./assets/js/htmlRoutes")
+// var apiRoutes = require("./assets/js/apiRoutes")
+var notes = require("./db/db.json")
 var app = express();
-var PORT = process.env.PORT || 4000;
+var PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "notes.html"));
+  });
+
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "notes.html"));
+  });
+
+app.get("/api/notes",function(req,res){
+  
+  res.json(notes[i].title)
+  
+
+
+
+
+})
+
+
 
 
 
