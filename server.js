@@ -1,10 +1,10 @@
 var express = require("express");
 const fs = require("fs");
 var path = require("path");
-var htmlRoutes = require("./assets/js/htmlRoutes")
-var apiRoutes = require("./assets/js/apiRoutes")
+var htmlRoutes = require("./routes/htmlRoutes")
+var apiRoutes = require("./routes/apiRoutes")
 var note = require("./db/db.json")
-// const createNotes = require("./index");
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -24,16 +24,16 @@ app.get("/api/notes",function(req,res){
 
 
 app.post("/api/notes",function(req,res){
-  
+  console.log("adding new notes")
   var newNote = req.body;
- storedNotes = 
- storedNotes.push(newNote)
- fs.writeFile("dbjson",JSON.stringify(storedNotes),(err,data)=>{
+
+ 
+ fs.writeFile("dbjson",JSON.stringify(newNote),(err)=>{
   if (err) {
     return console.log(err)
   }
-  
-  return storedNotes
+  note.push(newNote)
+  res.json(note)
  })
 
 
