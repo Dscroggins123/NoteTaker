@@ -11,35 +11,13 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use("/" , htmlRoutes)
+app.use("/" , htmlRoutes);
+apiRoutes(app);
 
 
 
 
-app.get("/api/notes",function(req,res){
 
-  
-  res.json(note)
-  })
-
-
-app.post("/api/notes",function(req,res){
-  console.log("adding new notes")
-  var newNote = req.body;
-
- 
- fs.writeFile("dbjson",JSON.stringify(newNote),(err)=>{
-  if (err) {
-    return console.log(err)
-  }
-  note.push(newNote)
-  res.json(note)
- })
-
-
-
-
-})
 
 
 
